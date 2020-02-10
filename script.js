@@ -31,15 +31,19 @@ function playRound(playerSelection, computerSelection) {
     result = "Scissors beats paper. You lost.";
   } else if (playerCap == "Scissors" && computerSelection == "Rock") {
     result = "Rock beats scissors. You lost.";
-  } else if (playerCap == "Scissors" && computerSelection == "Paper") {
-    result = "Scissors beats paper. You won.";
   } else {
-    result = "Something wrong with uppercase-stuff.";
+    result = "Scissors beats paper. You won.";
   }
   return result;
 }
 
-//check play function
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+  round = 0;
+  while (round < 5) {
+    let choice = prompt("Rock, Paper or Scissors?");
+    console.log(playRound(choice, computerPlay()));
+    round++;
+  }
+}
+
+game();
