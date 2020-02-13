@@ -92,13 +92,6 @@ function game() {
       }
     });    
   });
-  
-//   console.log("Final Scoreboard: " + playerScore + " : " + botScore);
-//   if (playerScore > botScore) {
-//     console.log("The winner: YOU");
-//   } else {
-//     console.log("The winner: Skynet!!! :O");
-//   }
 }
 
 game();
