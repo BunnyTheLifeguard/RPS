@@ -53,24 +53,45 @@ function game() {
   round = 0;
   let playerScore = 0;
   let botScore = 0;
-  while (round < 5) {
-    let choice = prompt("Rock, Paper or Scissors?");
-    let roundResults = playRound(choice, computerPlay());
-    let msg = roundResults.message;
-    playerScore += roundResults.pointsPlayer;
-    botScore += roundResults.pointsBot;
-    console.log(msg);
-    console.log("Your score: " + playerScore);
-    console.log("Computer's score: " + botScore);
-    console.log("");
-    round++;
-  }
-  console.log("Final Scoreboard: " + playerScore + " : " + botScore);
-  if (playerScore > botScore) {
-    console.log("The winner: YOU");
-  } else {
-    console.log("The winner: Skynet!!! :O");
-  }
+  const results = document.querySelector('#results');
+  
+  const buttons = document.querySelectorAll('button');
+  const final = document.createElement('h2');
+  final.classList.add('final');
+
+  var scoreP = 0;
+  var scoreB =0;
+  buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      game = playRound(String(button.id), computerPlay());
+
+      const msg = document.createElement('p');
+      msg.classList.add('msg');
+      const scP = document.createElement('p');
+      scP.classList.add('scP');
+      const scB = document.createElement('p');
+      scB.classList.add('scB');
+      
+      msg.textContent = game.message;
+      results.appendChild(msg);
+      scoreP += game.pointsPlayer;
+      scP.textContent = scoreP;
+      results.appendChild(scP);
+      scoreB += game.pointsBot;
+      scB.textContent = scoreB;
+      results.appendChild(scB);
+
+      if (scoreP == 5 || scoreB == 5) {
+        if (scoreP > scoreB) {
+          final.textContent = 'You won!'
+          results.appendChild(final);
+        } else {
+          final.textContent = 'Skynet won! RUN!!!'
+          results.appendChild(final);
+        }
+      }
+    });    
+  });
 }
 
 game();
