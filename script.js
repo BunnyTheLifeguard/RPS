@@ -53,6 +53,7 @@ function game() {
   round = 0;
   let playerScore = 0;
   let botScore = 0;
+
   const results = document.querySelector('#results');
   
   const buttons = document.querySelectorAll('button');
